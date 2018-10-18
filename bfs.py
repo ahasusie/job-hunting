@@ -7,6 +7,9 @@ class TreeNode(object):
         self.left = None
         self.right = None
 
+
+
+
 # How to traverse the tree.
 def bfsTraverse(root):   
     ret = []
