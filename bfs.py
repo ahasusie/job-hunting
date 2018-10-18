@@ -1,11 +1,13 @@
 from collections import deque
 
+# This is TreeNode definitiion.
 class TreeNode(object):
     def __init__(self, x):
         self.val = x
         self.left = None
         self.right = None
 
+# How to traverse the tree.
 def bfsTraverse(root):   
     ret = []
     if not root:
