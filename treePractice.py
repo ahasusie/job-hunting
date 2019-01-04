@@ -115,25 +115,25 @@ def maxDepth(root):
     return depth
 
     # dfs iteration, top-down, preorder
-    # if not root:
-    #     return
-    # depth = 0
-    # stack = [(root, 1)]
-    # while stack:
-    #     node, curDepth = stack.pop()
-    #     if node:
-    #         depth = max(depth, curDepth)
-    #         if node.right:
-    #             stack.append((node.right, curDepth+1))
-    #         if node.left:
-    #             stack.append((node.left, curDepth+1))
-    # return depth
+    if not root:
+        return
+    depth = 0
+    stack = [(root, 1)]
+    while stack:
+        node, curDepth = stack.pop()
+        if node:
+            depth = max(depth, curDepth)
+            if node.right:
+                stack.append((node.right, curDepth+1))
+            if node.left:
+                stack.append((node.left, curDepth+1))
+    return depth
 
     # dfs recursion, divide and conquer, post order, buttom-up
-    # max depth = left/right subtree max depth + 1
-    # if not root:
-    #     return 0
-    # return max(maxDepth(root.left), maxDepth(root.right)) + 1
+    max depth = left/right subtree max depth + 1
+    if not root:
+        return 0
+    return max(maxDepth(root.left), maxDepth(root.right)) + 1
 
 # dfs recursion, traversal, top-down
 class Solutions(object):
