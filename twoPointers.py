@@ -35,6 +35,7 @@ def rmElement(nums, val):
             i += 1
     return i
 
+# left & right
 def reverseStr(string):
     if not string: return None
     i, j = 0, len(string)-1
@@ -45,23 +46,7 @@ def reverseStr(string):
         j -= 1
     return ''.join(l)
 
-def moveZero(nums):
-    # if not nums: return None
-    # for i in range(len(nums)):
-    #     if nums[i] == 0 and i+1 <= len(nums)-1:
-    #         nums[i], nums[i+1] = nums[i+1], nums[i]
-    #     else:
-    #         continue
-    # return nums
-    slow, fast = 0, 0
-    while fast <= len(nums)-1:
-        if nums[fast] is not 0:
-            nums[slow], nums[fast] = nums[fast], nums[slow]
-            slow += 1
-        fast += 1
-        print slow, fast
-    return nums
-
+# left & right
 def twoSum(nums, sums):
     l, r = 0, len(nums)-1
     while l<r:
@@ -74,6 +59,7 @@ def twoSum(nums, sums):
             r -= 1
     return None
 
+# left & right
 def validPalindrome(s):
     l, r = 0, len(s)-1
     while l<r:
@@ -89,6 +75,7 @@ def validPalindrome(s):
                 return False
     return True
 
+# left & right
 def reverseVowels(word):
     vowels = set(list("aeiouAEIOU"))
     s = list(word)
@@ -103,6 +90,11 @@ def reverseVowels(word):
             l += 1
             r -= 1
     return ''.join(s)
+
+# 15. 3sum
+def threeSum(nums):
+    # [-1, 0, 1, 2, -1, -4]
+    pass
 
 def backspaceCompare(S, T):
     def stack(string, stack):
@@ -119,13 +111,75 @@ def backspaceCompare(S, T):
     l2 = stack(T, [])
     return l1 == l2
 
+# fast & slow
+def moveZero(nums):
+    slow, fast = 0, 0
+    while fast <= len(nums)-1:
+        if nums[fast] is not 0:
+            nums[slow], nums[fast] = nums[fast], nums[slow]
+            slow += 1
+        fast += 1
+        print slow, fast
+    return nums
+
+# fast & slow
+# 26. Remove Duplicates from Sorted Array
+def rmDuplicates(nums):
+    if not nums:
+        return 
+    slow = fast = 0
+    while fast <= len(nums) - 1:
+        if nums[fast] != nums[slow]:
+            nums[slow+1] = nums[fast]
+            slow += 1
+        fast += 1
+    return slow + 1
+
+# fast & slow
+def hasCycleLinkedList(head):
+    fast = slow = head
+    while fast and fast.next:
+        fast = fast.next.next
+        slow = slow.next
+        if slow is fast:
+            return True
+    return False
+
+# sliding windows
+def strStr(haystack, needle):
+    for i in range(len(haystack)-len(needle)+1):
+        if haystack[i:i+len(needle)] == needle:
+            return i
+    return -1
+
+# sliding window
+# 3. Longest Substring Without Repeating Characters
+def lengthOfLongestSubstring(s):
+    dic, cnt, l = {}, 0, 0
+    for r in range(len(s)):    
+        if s[r] in dic and l <= dic[s[r]]:
+            l = dic[s[r]] + 1
+        else:
+            cnt = max(cnt, r-l+1)
+        dic[s[r]] = r
+    print dic
+    return cnt
+def test(s): # store the last appearance index of each char in s
+    dic = {}
+    for i in range(len(s)):
+        dic[s[i]] = i
+    print dic
 
 if __name__ == "__main__":
     nums = [0,1,0,3,12]
     matrix = [[1,2,3],[4,5,6],[7,8,9]]
     s = "race a car"
 
-    print backspaceCompare("ab#c", "ad#c")
+    test("abcabcbb")
+    # print lengthOfLongestSubstring("abcabcbb")
+    # print strStr("hello", "ll")
+    # print rmDuplicates([1,2,2,3,4,5,5,5,6])
+    # print backspaceCompare("ab#c", "ad#c")
     # print reverseVowels("hello")
     # print validPalindrome(s)
     # print twoSum(nums, 4)
