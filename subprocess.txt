@@ -1,0 +1,40 @@
+Popen + communicate()
+subprocess.call(["ls", "-l"])			# call(), check_call()
+subprocess.call("ls -l", shell=True)
+
+subprocess.check_output(["ls", "-l"])
+subprocess.check_output("ls -l", shell=True)
+
+import shlex, subprocess
+command_line = raw_input()
+ls -l
+args = shlex.split(command_line)
+p = subprocess.Popen(args) # Success!
+
+
+no relation between names in different namespaces.
+namespaces examples:
+-set of build-in names
+-global names in a module
+-local names in a function
+-set of attributes of an object
+
+namespaces are created at different moments and have different lifetimes.
+a scope is a textual region of a python program where a namespace is directly accessible
+
+When we create a variable inside a function, it’s local by default.
+When we define a variable outside of a function, it’s global by default. You don’t have to use global keyword.
+We use global keyword to read and write a global variable inside a function.
+Use of global keyword outside a function has no effect
+
+At any time during execution, there are at least three nested scopes whose namespaces are directly accessible:
+
+//the innermost scope, which is searched first, contains the local names
+//the scopes of any enclosing functions, which are searched starting with the nearest enclosing scope, contains non-local, but also non-global names
+//the next-to-last scope contains the current module’s global names the outermost scope (searched last) is the namespace containing built-in names
+
+
+when it comes to closures, that is not the case: you must use nested functions.
+
+
+
